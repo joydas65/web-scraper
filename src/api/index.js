@@ -8,19 +8,23 @@ export const extractData = async () => {
     const imageSources = []
 
     try {
+        //const { data } = fetch('https://cors-anywhere.herokuapp.com/https://spacenews.com/segment/news/')
+            
         const { data } = await axios.get(
-            'https://www.abc.com'
+            'https://cors-anywhere.herokuapp.com/https://spacenews.com/segment/news/'
         )
         const $ = cheerio.load(data)
 
-        $('div > a').each((_idx, el) => {
+        $('#main > div.launch-section > div.launch-article > div.article-meta > h2.launch-title > a').each((_idx, el) => {
             const postTitle = $(el).text()
             postTitles.push(postTitle)
         })
 
-        $('div > img').each((_idx, el) => {
+        $('#main > div.launch-section > div.launch-article > span.launch-image > a > img').each((_idx, el) => {
             imageSources.push(Object.values(el.attribs)[1])
         })
+
+        console.log(postTitles, imageSources)
 
         return [postTitles, imageSources]
     } catch(error) {

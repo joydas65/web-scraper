@@ -1,26 +1,39 @@
-import React, { useState, useEffect } from 'react'
-import { extractData } from '../api/index'
+import React from 'react' //{ useState, useEffect }
+//import { extractData } from '../api/index'
+import PostImage from './PostImage'
 import './Post.css'
 
-const Post = () => {
+const Post = ({ images, titles }) => {    //{ images, titles }
     
-    const [masterData, setMasterData] = useState([])
+    // const [masterData, setMasterData] = useState([])
 
-    useEffect(() => {
-        const fetchData = async () => {
-            setMasterData(await extractData())
-        }
-        fetchData()
-    }, [])
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         setMasterData(await extractData())
+    //     }
+    //     fetchData()
+    // }, [])
 
-    console.log(masterData[1])
+    //{
+      //  masterData && masterData[1] ? masterData[1].map((item, idx) => (
+        //    <PostImage quote={masterData[0][idx]} item={item} key={idx} />
+        //)) : 'Cannot display images from the website https://spacenews.com/segment/news/'
+    //}
+
+    // console.log(masterData)
+
+    //{
+      //  images.map((item, idx) => {
+        //    return <PostImage item={item} quote={titles[idx]} key={idx} />
+        //})
+    //}
     
     return (
         <div className="post">
             {
-                masterData[1] ? masterData[1].map((item, idx) => (
-                    <img style={{ width: '1080px', height: '1080px' }} src={item} key={idx} alt="snews" />
-                )) : null 
+                images.map((item, idx) => {
+                    return <PostImage item={item} quote={titles[idx]} key={idx} />
+                })
             }
         </div>
     )
