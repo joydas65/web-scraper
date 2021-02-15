@@ -1,1 +1,14 @@
+.post,
+p {
+  text-align: center;
+}
 
+.react-datepicker,
+.react-datepicker-wrapper,
+.react-datepicker__input-container,
+.react-datepicker__input-container input {
+  margin-top: 5px;
+  margin-bottom: 7px;
+  display: flex;
+  justify-content: center;
+}
